@@ -1,0 +1,24 @@
+.tekst p{
+    font-family: arial;
+    font-size: 150px;
+    margin-left: 10px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* testing de code met verwisselen van classes */
+
+.balk{
+    width: 650px;
+    height: 30px;
+    background-color: blue;
+}
+
+.twee{
+    background-color: red; 
+}
+
+
+
+
+
