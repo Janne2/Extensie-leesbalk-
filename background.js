@@ -1,24 +1,15 @@
 
-// background.js
-
-// Called when the user clicks on the browser action.
+// Wanneer we op de knop klikken van de extensie:
 chrome.browserAction.onClicked.addListener(function(tab) {
-    console.log("BACKGROUND ACTION!!!!");
-  // Send a message to the active tab
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    var activeTab = tabs[0];
-    chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
-  });
-  chrome.tabs.executeScript({
-      code: 'document.body.style.backgroundColor="pink"'
-  })
+    // veel van de acties in Chrome extensies zijn a-synchroon, dat wil zeggen dat als je de volgende regel lanceert,
+    // het nog niet duidelijk is of de eerste actie al afgerond is.
+    // Dat is een probleem voor ons, omdat we pas het script willen runnen als jquery geladen is
+    // (en als de css geladen is).
+    // De oplossing is een ‘callback functie’: we geven een functie mee die uitgevoerd wordt als de vorige functie
+    // afgelopen is.
+    chrome.tabs.insertCSS(null, {file: "style.css"}, function() {
+        chrome.tabs.executeScript(null, {file: "jquery.min.js"}, function() {
+            chrome.tabs.executeScript(null, {file: "beweging.js"});
+        });
+    });
 });
-
-// This block is new!
-/*chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    if( request.message === "open_new_tab" ) {
-      chrome.tabs.create({"url": request.url});
-    }
-  }
-);*/

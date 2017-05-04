@@ -8,17 +8,17 @@
 
 /* testing de code met verwisselen van classes */
 
-.balk{
+.balk {
+    position: absolute;
     width: 650px;
     height: 30px;
     background-color: blue;
+    left: 50%;
+    margin-left: -325px;
+    top: 150px;
 }
 
 .twee{
     background-color: red; 
 }
-
-
-
-
 
