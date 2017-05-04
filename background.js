@@ -9,7 +9,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     // afgelopen is.
     chrome.tabs.insertCSS(null, {file: "style.css"}, function() {
         chrome.tabs.executeScript(null, {file: "jquery.min.js"}, function() {
-            chrome.tabs.executeScript(null, {file: "beweging.js"});
+           // chrome.tabs.executeScript(null, {file: "name-of-your-jquery-ui-file.js"}, function() { <-- adapt filename
+                chrome.tabs.executeScript(null, {file: "beweging.js"});
+           // }); <-- remove the comments when adding jquery ui
         });
     });
 });
